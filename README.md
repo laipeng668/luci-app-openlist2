@@ -1,10 +1,13 @@
-# luci-app-openlist2
+<h1 align="center">OpenWrt OpenList JS 增强版</h1>
+<div align="center">
 
-🗂️ A file list program that supports multiple storage, powered by Gin and Solidjs.
+> 官方文档：[用户指南](https://doc.oplist.org/guide) [配置文件](https://doc.oplist.org/configuration/configuration) [反向代理](https://doc.oplist.org/guide/installation/reverse-proxy) [迁移指南](https://doc.oplist.org/guide/migrate) 下载地址：[Packages](https://github.com/laipeng668/openwrt-ci-roc/releases/tag/Packages)
 
-## How to build
+</div>
 
-- Install `libfuse` development package.
+### 构建方法:
+
+- 安装 `libfuse` 开发包
 
   - ubuntu/debian:
     ```shell
@@ -22,50 +25,23 @@
     sudo pacman -S fuse2
     ```
 
-- Enter in your openwrt dir
+- 进入 OpenWrt 源码目录
 
-- Openwrt official SnapShots
+- OpenWrt 官方快照版本
 
-  *1. requires golang 1.24.x or latest version (Fix build for older branches of OpenWrt.)*
+  *1. 需要 golang 1.26.x 或更新版本（用于修复旧版 OpenWrt 分支的构建问题）*
   ```shell
   rm -rf feeds/packages/lang/golang
-  git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
+  git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
   ```
 
-  *2. get luci-app-openlist code & building*
+  *2. 获取 luci-app-openlist2 源码并构建*
   ```shell
-  git clone https://github.com/sbwml/luci-app-openlist2 package/openlist
-  make menuconfig # choose LUCI -> Applications -> luci-app-openlist2
-  make package/openlist/luci-app-openlist2/compile V=s # build luci-app-openlist2
+  git clone https://github.com/laipeng668/luci-app-openlist2 package/openlist
+  make menuconfig # 选择 LUCI -> Applications -> luci-app-openlist2
+  make package/openlist/luci-app-openlist2/compile V=s # 构建 luci-app-openlist2
   ```
 
---------------
+<h2 align="center">页面预览</h2>
 
-## How to install prebuilt packages (LuCI2)
-
-- Login OpenWrt terminal (SSH)
-
-- Install `curl` package
-  ```shell
-  # for opkg package manager (openwrt 21.02 ~ 24.10)
-  opkg update
-  opkg install curl
-  
-  # for apk package manager
-  apk update
-  apk add curl
-  ```
-
-- Execute install script (Multi-architecture support)
-  ```shell
-  sh -c "$(curl -ksS https://raw.githubusercontent.com/sbwml/luci-app-openlist2/main/install.sh)"
-  ```
-
-  install via ghproxy:
-  ```shell
-  sh -c "$(curl -ksS https://api.cooluc.com/openlist/install.sh)" _ gh_proxy="https://gh-proxy.org"
-  ```
-
---------------
-
-![luci-app-openlist](https://github.com/user-attachments/assets/50d8ee3a-e589-4285-922a-40c82f96b9f5)
+![Homepage](Homepage.png)
