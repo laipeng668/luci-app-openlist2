@@ -28,7 +28,7 @@ define Download/openlist-frontend
   HASH:=f8de22c2957a104487b54c10aef511c31baa9b76f556ffdbde4ae595428a7378
 endef
 
-PKG_BUILD_DEPENDS:=golang/host fuse
+PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
@@ -42,8 +42,9 @@ GO_PKG_LDFLAGS:= \
 	-X '$(GO_PKG)/internal/conf.GitCommit=tarball/$(shell echo $(PKG_HASH) | cut -c 1-7)' \
 	-X '$(GO_PKG)/internal/conf.Version=v$(PKG_VERSION) (OpenWrt $(ARCH_PACKAGES))' \
 	-X '$(GO_PKG)/internal/conf.WebVersion=v$(PKG_WEB_VERSION)'
+GO_PKG_EXCLUDES:=internal/fuse
 ifneq ($(CONFIG_ARCH_64BIT),y)
-  GO_PKG_EXCLUDES:=drivers/lark
+  GO_PKG_EXCLUDES+=drivers/lark
 endif
 
 include $(INCLUDE_DIR)/package.mk
@@ -73,10 +74,6 @@ ifeq ($(ARCH),arm)
     TARGET_CFLAGS:=
     TARGET_LDFLAGS:=
   endif
-endif
-
-ifneq ($(CONFIG_USE_MUSL),)
-  TARGET_CFLAGS += -D_LARGEFILE64_SOURCE
 endif
 
 define Build/Prepare
