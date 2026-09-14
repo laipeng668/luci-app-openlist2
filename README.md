@@ -11,10 +11,10 @@
 
 - OpenWrt 官方快照版本
 
-  *1. 需要 golang 1.26.x 或更新版本（用于修复旧版 OpenWrt 分支的构建问题）*
+  *1. 需要 golang 1.27.x 或更新版本（用于修复旧版 OpenWrt 分支的构建问题）*
   ```shell
   rm -rf feeds/packages/lang/golang
-  git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
+  git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang
   ```
 
   *2. 获取 luci-app-openlist2 源码并构建*

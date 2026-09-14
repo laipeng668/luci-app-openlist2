@@ -1,5 +1,8 @@
 #!/bin/sh
 
+. /usr/share/openlist2/functions.sh
+openlist2_migrate_config || exit 1
+
 [ -f "/etc/config/ucitrack" ] && {
 uci -q batch <<-EOF >/dev/null
 	delete ucitrack.@openlist2[-1]
